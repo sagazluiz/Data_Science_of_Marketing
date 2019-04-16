@@ -1,0 +1,70 @@
+---
+title: "The Data Science of Marketing"
+author: "Fabio Araujo"
+date: "26 de março de 2018"
+output:
+  pdf_document: default
+  html_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Cluster Analysis
+
+# Connect to case study  ###
+```{r}
+
+myClusterData <- read.csv("D:/00 - Fabio/Ex_Files_Data_Science_of_Marketing/Exercise_Files/05_02/cluster-r.csv")
+
+```
+
+
+# Review our data ###
+```{r}
+
+head(myClusterData)
+
+```
+
+
+#Standardize the data ###
+```{r}
+myClusterDataStandardized <- scale(myClusterData[-1]) # remove a primeira coluna - queremos apenas variáveis numéricas
+
+
+```
+
+
+# Run kmeans on our standardazide data ###
+```{r}
+
+ourGroups <- kmeans(myClusterDataStandardized, 3)
+
+```
+
+
+
+# Load in our clusters library ###
+```{r}
+
+library(cluster)
+
+```
+
+# Visualize our clusters
+```{r}
+
+clusplot(myClusterDataStandardized, ourGroups$cluster)
+
+```
+
+# Sumarize our data ###
+```{r}
+
+ourGroups$cluster
+
+```
